@@ -13,7 +13,7 @@
 #include <TlHelp32.h>
 #include <random>
 #include <fstream>
-#include "../Universal/vmprotect.h"
+//nclude "../Universal/vmprotect.h"
 #include "BypassInstaller/BypassInstaller.h"
 using namespace std;
 bool enabledebug;
@@ -24,18 +24,18 @@ std::random_device rd;
 std::mt19937 generator(rd());
 std::string rand_str(size_t length)
 {
-    Protect();
+    
     const size_t char_size = chars.size();
     std::uniform_int_distribution<> random_int(0, char_size - 1);
     std::string output;
     for (size_t i = 0; i < length; ++i)
         output.push_back(chars[random_int(generator)]);
-    ProtectEnd();
+    
     return output;
 }
 int DoBypassInstaller()
 {
-    Protect();
+    
     std::unique_ptr<BypassInstaller> bypass_installer = std::make_unique<BypassInstaller>();
 
     if (!bypass_installer->LoadVulnerableDriver())
@@ -48,7 +48,7 @@ int DoBypassInstaller()
         return -1;
     std::this_thread::sleep_for(std::chrono::seconds(1));
     std::system("exit");
-    ProtectEnd();
+    
 }
 void menuStart()
 {

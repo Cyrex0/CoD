@@ -1,9 +1,9 @@
 #include "utils.hpp"
-#include "../../Universal/vmprotect.h"
+
 
 bool utils::ReadFileToMemory(const std::string& file_path, std::vector<uint8_t>* out_buffer)
 {
-	Protect();
+	
 	std::ifstream file_ifstream(file_path, std::ios::binary);
 
 	if (!file_ifstream)
@@ -11,13 +11,13 @@ bool utils::ReadFileToMemory(const std::string& file_path, std::vector<uint8_t>*
 
 	out_buffer->assign((std::istreambuf_iterator<char>(file_ifstream)), std::istreambuf_iterator<char>());
 	file_ifstream.close();
-	ProtectEnd();
+	
 	return true;
 }
 
 bool utils::CreateFileFromMemory(const std::string& desired_file_path, const char* address, size_t size)
 {
-	Protect();
+	
 	std::ofstream file_ofstream(desired_file_path.c_str(), std::ios_base::out | std::ios_base::binary);
 
 	if (!file_ofstream.write(address, size))
@@ -27,13 +27,13 @@ bool utils::CreateFileFromMemory(const std::string& desired_file_path, const cha
 	}
 
 	file_ofstream.close();
-	ProtectEnd();
+	
 	return true;
 }
 
 uint64_t utils::GetKernelModuleAddress(const std::string& module_name)
 {
-	Protect();
+	
 	void* buffer = nullptr;
 	DWORD buffer_size = 0;
 	NTSTATUS status = NtQuerySystemInformation(static_cast<SYSTEM_INFORMATION_CLASS>(nt::SystemModuleInformation), buffer, buffer_size, &buffer_size);
@@ -67,6 +67,6 @@ uint64_t utils::GetKernelModuleAddress(const std::string& module_name)
 	}
 
 	VirtualFree(buffer, 0, MEM_RELEASE);
-	ProtectEnd();
+	
 	return 0;
 }

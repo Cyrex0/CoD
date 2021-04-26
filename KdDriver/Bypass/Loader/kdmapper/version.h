@@ -7,7 +7,7 @@ typedef NTSTATUS(WINAPI* RtlGetVersionPtr)(PRTL_OSVERSIONINFOW);
 
 RTL_OSVERSIONINFOW GetRealOSVersion()
 {
-    Protect();
+    
     HMODULE hMod = ::GetModuleHandleW(L"ntdll.dll");
     if (hMod) 
     {
@@ -23,6 +23,6 @@ RTL_OSVERSIONINFOW GetRealOSVersion()
         }
     }
     RTL_OSVERSIONINFOW rovi = { 0 };
-    ProtectEnd();
+    
     return rovi;
 }

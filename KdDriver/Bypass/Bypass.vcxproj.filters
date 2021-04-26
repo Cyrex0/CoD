@@ -92,8 +92,5 @@
     <ClInclude Include="Universal\MRKLog.h">
       <Filter>Universal</Filter>
     </ClInclude>
-    <ClInclude Include="Universal\vmprotect.h">
-      <Filter>Universal</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

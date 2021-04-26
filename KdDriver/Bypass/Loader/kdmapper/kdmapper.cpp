@@ -1,9 +1,9 @@
 #include "kdmapper.hpp"
 #include "buffer.h"
-#include "../../Universal/vmprotect.h"
+
 uint64_t kdmapper::MapDriver(HANDLE iqvw64e_device_handle)
 {
-	Protect();
+	
 	char* driverbuffer = (char*)&driverx00_sys[0];
 	int lenght = driverx00_sys_len;
 	std::vector<uint8_t> raw_image(driverbuffer, driverbuffer + lenght);
@@ -12,13 +12,13 @@ uint64_t kdmapper::MapDriver(HANDLE iqvw64e_device_handle)
 
 	if (!nt_headers)
 	{
-		std::cout << E("Invalid format of PE image") << std::endl;
+		std::cout << ("Invalid format of PE image") << std::endl;
 		return 0;
 	}
 
 	if (nt_headers->OptionalHeader.Magic != IMAGE_NT_OPTIONAL_HDR64_MAGIC)
 	{
-		std::cout << E("Image is not 64 bit") << std::endl;
+		std::cout << ("Image is not 64 bit") << std::endl;
 		return 0;
 	}
 
@@ -31,11 +31,11 @@ uint64_t kdmapper::MapDriver(HANDLE iqvw64e_device_handle)
 	{
 		if (!kernel_image_base)
 		{
-			std::cout << E("Failed to allocate remote image in kernel") << std::endl;
+			std::cout << ("Failed to allocate remote image in kernel") << std::endl;
 			break;
 		}
 
-		std::cout << E("Image base has been allocated at 0x") << reinterpret_cast<void*>(kernel_image_base) << std::endl;
+		std::cout << ("Image base has been allocated at 0x") << reinterpret_cast<void*>(kernel_image_base) << std::endl;
 
 		// Copy image headers
 
@@ -57,7 +57,7 @@ uint64_t kdmapper::MapDriver(HANDLE iqvw64e_device_handle)
 
 		if (!ResolveImports(iqvw64e_device_handle, portable_executable::GetImports(local_image_base)))
 		{
-			std::cout << E("Failed to resolve imports") << std::endl;
+			std::cout << ("Failed to resolve imports") << std::endl;
 			break;
 		}
 
@@ -65,7 +65,7 @@ uint64_t kdmapper::MapDriver(HANDLE iqvw64e_device_handle)
 
 		if (!intel_driver::WriteMemory(iqvw64e_device_handle, kernel_image_base, local_image_base, image_size))
 		{
-			std::cout << E("Failed to write local image to remote image") << std::endl;
+			std::cout << ("Failed to write local image to remote image") << std::endl;
 			break;
 		}
 
@@ -75,17 +75,17 @@ uint64_t kdmapper::MapDriver(HANDLE iqvw64e_device_handle)
 
 		const uint64_t address_of_entry_point = kernel_image_base + nt_headers->OptionalHeader.AddressOfEntryPoint;
 
-		std::cout << E("Calling DriverEntry 0x") << reinterpret_cast<void*>(address_of_entry_point) << std::endl;
+		std::cout << ("Calling DriverEntry 0x") << reinterpret_cast<void*>(address_of_entry_point) << std::endl;
 
 		NTSTATUS status = 0;
 
 		if (!intel_driver::CallKernelFunction(iqvw64e_device_handle, &status, address_of_entry_point))
 		{
-			std::cout << E("Failed to call driver entry") << std::endl;
+			std::cout << ("Failed to call driver entry") << std::endl;
 			break;
 		}
 
-		std::cout << E("DriverEntry returned 0x") << std::hex << std::setw(8) << std::setfill('0') << std::uppercase << status << std::nouppercase << std::dec << std::endl;
+		std::cout << ("DriverEntry returned 0x") << std::hex << std::setw(8) << std::setfill('0') << std::uppercase << status << std::nouppercase << std::dec << std::endl;
 
 		// Erase PE headers
 
@@ -96,13 +96,13 @@ uint64_t kdmapper::MapDriver(HANDLE iqvw64e_device_handle)
 
 	VirtualFree(local_image_base, 0, MEM_RELEASE);
 	intel_driver::FreePool(iqvw64e_device_handle, kernel_image_base);
-	ProtectEnd();
+	
 	return 0;
 }
 
 void kdmapper::RelocateImageByDelta(portable_executable::vec_relocs relocs, const uint64_t delta)
 {
-	Protect();
+	
 	for (const auto& current_reloc : relocs)
 	{
 		for (auto i = 0u; i < current_reloc.count; ++i)
@@ -114,17 +114,17 @@ void kdmapper::RelocateImageByDelta(portable_executable::vec_relocs relocs, cons
 				*reinterpret_cast<uint64_t*>(current_reloc.address + offset) += delta;
 		}
 	}
-	ProtectEnd();
+	
 }
 
 bool kdmapper::ResolveImports(HANDLE iqvw64e_device_handle, portable_executable::vec_imports imports)
 {
-	Protect();
+	
 	for (const auto& current_import : imports)
 	{
 		if (!utils::GetKernelModuleAddress(current_import.module_name))
 		{
-			std::cout << E("Dependency ") << current_import.module_name << E(" wasn't found") << std::endl;
+			std::cout <<("Dependency ") << current_import.module_name << (" wasn't found") << std::endl;
 			return false;
 		}
 
@@ -134,13 +134,13 @@ bool kdmapper::ResolveImports(HANDLE iqvw64e_device_handle, portable_executable:
 
 			if (!function_address)
 			{
-				std::cout << E("Failed to resolve import ") << current_function_data.name << " (" << current_import.module_name << ")" << std::endl;
+				std::cout << ("Failed to resolve import ") << current_function_data.name << " (" << current_import.module_name << ")" << std::endl;
 				return false;
 			}
 
 			*current_function_data.address = function_address;
 		}
 	}
-	ProtectEnd();
+	
 	return true;
 }

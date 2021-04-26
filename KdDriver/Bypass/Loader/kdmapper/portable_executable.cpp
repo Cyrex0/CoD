@@ -1,9 +1,9 @@
 #include "portable_executable.hpp"
-#include "../../Universal/vmprotect.h"
+
 
 PIMAGE_NT_HEADERS64 portable_executable::GetNtHeaders(void* image_base)
 {
-	Protect();
+	
 	const auto dos_header = reinterpret_cast<PIMAGE_DOS_HEADER>(image_base);
 
 	if (dos_header->e_magic != IMAGE_DOS_SIGNATURE)
@@ -13,13 +13,13 @@ PIMAGE_NT_HEADERS64 portable_executable::GetNtHeaders(void* image_base)
 
 	if (nt_headers->Signature != IMAGE_NT_SIGNATURE)
 		return nullptr;
-	ProtectEnd();
+	
 	return nt_headers;
 }
 
 portable_executable::vec_relocs portable_executable::GetRelocs(void* image_base)
 {
-	Protect();
+	
 	const PIMAGE_NT_HEADERS64 nt_headers = GetNtHeaders(image_base);
 
 	if (!nt_headers)
@@ -44,13 +44,13 @@ portable_executable::vec_relocs portable_executable::GetRelocs(void* image_base)
 		current_base_relocation = reinterpret_cast<PIMAGE_BASE_RELOCATION>(reinterpret_cast<uint64_t>(current_base_relocation) + current_base_relocation->SizeOfBlock);
 	}
 
-	ProtectEnd();
+	
 	return relocs;
 }
 
 portable_executable::vec_imports portable_executable::GetImports(void* image_base)
 {
-	Protect();
+	
 	const PIMAGE_NT_HEADERS64 nt_headers = GetNtHeaders(image_base);
 	if (!nt_headers)
 		return {};
@@ -81,6 +81,6 @@ portable_executable::vec_imports portable_executable::GetImports(void* image_bas
 		imports.push_back(import_info);
 		++current_import_descriptor;
 	}
-	ProtectEnd();
+	
 	return imports;
 }

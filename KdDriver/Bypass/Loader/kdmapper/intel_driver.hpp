@@ -9,7 +9,7 @@
 #include "service.hpp"
 #include "utils.hpp"
 #include <assert.h>
-#include "../../Universal/vmprotect.h"
+
 namespace intel_driver
 {
 	constexpr auto driver_name = "nolm.sys";
@@ -83,7 +83,7 @@ namespace intel_driver
 	template<typename T, typename ...A>
 		bool CallKernelFunction(HANDLE device_handle, T* out_result, uint64_t kernel_function_address, const A ...arguments)
 	{
-			Protect();
+			
 		constexpr auto call_void = std::is_same_v<T, void>;
 
 		if constexpr (!call_void)
@@ -129,7 +129,7 @@ namespace intel_driver
 			const auto NtQueryInformationAtom = reinterpret_cast<void*>(GetProcAddress(LoadLibrary("ntdll.dll"), "NtQueryInformationAtom"));
 			if (!NtQueryInformationAtom)
 			{
-				std::cout << E("Failed to get export ntdll.NtQueryInformationAtom") << std::endl;
+				std::cout << ("Failed to get export ntdll.NtQueryInformationAtom") << std::endl;
 				return false;
 			}
 
@@ -140,7 +140,7 @@ namespace intel_driver
 			const uint64_t kernel_NtQueryInformationAtom = GetKernelModuleExport(device_handle, utils::GetKernelModuleAddress("ntoskrnl.exe"), "NtQueryInformationAtom");
 			if (!kernel_NtQueryInformationAtom)
 			{
-				std::cout << E("Failed to get export ntoskrnl.NtQueryInformationAtom") << std::endl;
+				std::cout << ("Failed to get export ntoskrnl.NtQueryInformationAtom") << std::endl;
 				return false;
 			}
 
@@ -178,7 +178,7 @@ namespace intel_driver
 
 			if (!NtGdiDdDDIReclaimAllocations2 && !NtGdiGetCOPPCompatibleOPMInformation)
 			{
-				std::cout << E("Failed to get export gdi32full.NtGdiDdDDIReclaimAllocations2 / win32u.NtGdiGetCOPPCompatibleOPMInformation") << std::endl;
+				std::cout << ("Failed to get export gdi32full.NtGdiDdDDIReclaimAllocations2 / win32u.NtGdiGetCOPPCompatibleOPMInformation") << std::endl;
 				return false;
 			}
 
@@ -243,7 +243,7 @@ namespace intel_driver
 
 			if (!NtGdiDdDDIReclaimAllocations2)
 			{
-				std::cout << E("Failed to get export gdi32full.NtGdiDdDDIReclaimAllocations2") << std::endl;
+				std::cout << ("Failed to get export gdi32full.NtGdiDdDDIReclaimAllocations2") << std::endl;
 				return false;
 			}
 
@@ -282,7 +282,7 @@ namespace intel_driver
 			WriteToReadOnlyMemory(device_handle, kernel_function_ptr, &kernel_original_function_address, sizeof(kernel_original_function_address));
 			return true;
 		}
-		ProtectEnd();
+		
 		return false;
 	}
 }
