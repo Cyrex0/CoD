@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Loader">
+      <UniqueIdentifier>{5c89b4bb-c15c-4b7d-b339-2d696c14e208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Loader\kdmapper">
+      <UniqueIdentifier>{acca4966-984a-4970-a50d-1b71b6394fb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Loader\BypassInstaller">
+      <UniqueIdentifier>{c2cba354-71c6-4eeb-a2a1-7f113fc4cd4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Universal">
+      <UniqueIdentifier>{f0f35bae-8049-4ab7-a3ff-84a22f3d6268}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Loader\Main.cpp">
+      <Filter>Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader\kdmapper\exports.cpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader\kdmapper\intel_driver.cpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader\kdmapper\kdmapper.cpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader\kdmapper\portable_executable.cpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader\kdmapper\service.cpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader\kdmapper\utils.cpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Universal\MRKLog.cpp">
+      <Filter>Universal</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Loader\Main.h">
+      <Filter>Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\BypassInstaller\BufferBat.h">
+      <Filter>Loader\BypassInstaller</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\BypassInstaller\BufferVulDirver.h">
+      <Filter>Loader\BypassInstaller</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\BypassInstaller\BypassInstaller.h">
+      <Filter>Loader\BypassInstaller</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\buffer.h">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\exports.h">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\intel_driver.hpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\intel_driver_resource.hpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\kdmapper.hpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\nt.hpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\portable_executable.hpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\service.hpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\shared.h">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\utils.hpp">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader\kdmapper\version.h">
+      <Filter>Loader\kdmapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Universal\Concat.hpp">
+      <Filter>Universal</Filter>
+    </ClInclude>
+    <ClInclude Include="Universal\MRKLog.h">
+      <Filter>Universal</Filter>
+    </ClInclude>
+    <ClInclude Include="Universal\vmprotect.h">
+      <Filter>Universal</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

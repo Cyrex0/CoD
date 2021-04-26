@@ -1,0 +1,101 @@
+﻿  main.cpp
+  The contents of <string_view> are available only with C++17 or later.
+  The contents of <filesystem> are available only with C++17 or later.
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(32,21): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\string(24): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(32,15): error C2061: syntax error: identifier 'string_view'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(33,33): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\string(24): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(33,45): error C2061: syntax error: identifier 'string_view'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,25): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\string(24): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,37): error C2061: syntax error: identifier 'string_view'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,42): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\string(24): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,54): error C2065: 'string_view': undeclared identifier
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,54): error C2146: syntax error: missing ')' before identifier 'DriverName'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,66): error C2143: syntax error: missing ';' before '{'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,66): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,54): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\string(24): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,66): error C2065: 'string_view': undeclared identifier
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,66): error C2146: syntax error: missing ')' before identifier 'moduleName'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,78): error C2143: syntax error: missing ';' before '{'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,78): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,46): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\string(24): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,58): error C2065: 'string_view': undeclared identifier
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,58): error C2146: syntax error: missing ')' before identifier 'process_name'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,72): error C2143: syntax error: missing ';' before '{'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,72): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(122,52): error C2660: 'DriverManager::GetProcessID': function does not take 1 arguments
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,7): message : see declaration of 'DriverManager::GetProcessID'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(140,69): error C2660: 'DriverManager::GetModuleBaseAddr': function does not take 1 arguments
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(33,10): message : see declaration of 'DriverManager::GetModuleBaseAddr'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(141,66): error C2660: 'DriverManager::GetProcessID': function does not take 1 arguments
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,7): message : see declaration of 'DriverManager::GetProcessID'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(159,22): warning C4244: 'initializing': conversion from 'float' to 'uintptr_t', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(250,6): error C2660: 'DriverManager::GetProcessID': function does not take 1 arguments
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,7): message : see declaration of 'DriverManager::GetProcessID'
+  overlay.cpp
+  The contents of <string_view> are available only with C++17 or later.
+  The contents of <filesystem> are available only with C++17 or later.
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(32,21): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\random(27): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(32,15): error C2061: syntax error: identifier 'string_view'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(33,33): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\random(27): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(33,45): error C2061: syntax error: identifier 'string_view'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,25): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\random(27): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,37): error C2061: syntax error: identifier 'string_view'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,42): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\random(27): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,54): error C2065: 'string_view': undeclared identifier
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,54): error C2146: syntax error: missing ')' before identifier 'DriverName'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,66): error C2143: syntax error: missing ';' before '{'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(120,66): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,54): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\random(27): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,66): error C2065: 'string_view': undeclared identifier
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,66): error C2146: syntax error: missing ')' before identifier 'moduleName'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,78): error C2143: syntax error: missing ';' before '{'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(143,78): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,46): error C2039: 'string_view': is not a member of 'std'
+F:\prg\VC\Tools\MSVC\14.28.29333\include\random(27): message : see declaration of 'std'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,58): error C2065: 'string_view': undeclared identifier
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,58): error C2146: syntax error: missing ')' before identifier 'process_name'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,72): error C2143: syntax error: missing ';' before '{'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(167,72): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(122,52): error C2660: 'DriverManager::GetProcessID': function does not take 1 arguments
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,7): message : see declaration of 'DriverManager::GetProcessID'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(140,69): error C2660: 'DriverManager::GetModuleBaseAddr': function does not take 1 arguments
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(33,10): message : see declaration of 'DriverManager::GetModuleBaseAddr'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(141,66): error C2660: 'DriverManager::GetProcessID': function does not take 1 arguments
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,7): message : see declaration of 'DriverManager::GetProcessID'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(159,22): warning C4244: 'initializing': conversion from 'float' to 'uintptr_t', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\main.cpp(250,6): error C2660: 'DriverManager::GetProcessID': function does not take 1 arguments
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\DriverManager.h(34,7): message : see declaration of 'DriverManager::GetProcessID'
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(60,39): warning C4018: '<': signed/unsigned mismatch
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(285,75): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(285,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(307,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(307,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(307,74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(307,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(333,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(333,17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(333,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(333,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(338,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(338,17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(338,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(338,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(343,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(343,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(343,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(343,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(347,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(347,17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(347,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\johns\source\repos\Clean - non autisim\Clean - non autisim\overlay.cpp(347,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
